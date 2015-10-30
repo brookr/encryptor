@@ -1,16 +1,16 @@
 var decrypter = {
   getPassword: function() {
     console.log("getting password:  ");
-    this.password = window.prompt("Password?");
+    this.password = prompt("Enter the password.", "password");
   },
   decryptMessage: function() {
-    console.log("decrypting your message: " + location.search.substring(1));
-    var cypher = location.search.substring(1).replace(/\s/g, "") ;
-    this.message = CryptoJS.AES.decrypt(cypher, this.password).toString(CryptoJS.enc.Utf8);
+    this.cypher = location.search.substring(1);
+    console.log("decrypting your message: " + this.cypher + "with password: " + this.password);
+    this.message = CryptoJS.AES.decrypt(this.cypher, this.password).toString();
+    console.log("got message: " + this.message);
   },
   showMessage: function() {
-    console.log("attempting to show message: ");
-    console.log("before decrpyt:  " + this.message);
+    console.log("attempting to show message: " + this.message);
     if (this.message)
       alert(this.message);
     else

@@ -1,6 +1,6 @@
 var encrypter = {
   setMessage: function() {
-    this.message = document.getElementById('encrypter').value;
+    this.message = document.getElementById('message').value;
     return this.message;
   },
 
@@ -24,6 +24,7 @@ var encrypter = {
   encrypt: function() {
     console.log("Encrypting");
     cypher = CryptoJS.AES.encrypt(this.message, this.password)
+    console.log("Confirming message: " + this.message + " and password: " + this.password);
     console.log("Verified: " +
        CryptoJS.AES.decrypt(cypher, this.password).toString(CryptoJS.enc.Utf8))
     return cypher
